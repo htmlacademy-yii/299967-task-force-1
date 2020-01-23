@@ -20,6 +20,12 @@ class Task
     const ACTION_CANCEL = 'cancel'; // отменить
     const ACTION_RESPOND = 'respond'; // откликнуться
 
+    const ACTION_STATUS_MAP = [
+            self::ACTION_COMPLETED => self::STATUS_COMPLETED,
+            self::ACTION_DENIAL => self::STATUS_FAILING,
+            self::ACTION_CANCEL => self::STATUS_CANCELED,
+        ];
+
     private $id = null;
     private $title = null;
     private $description = null;
@@ -95,11 +101,7 @@ class Task
     public function getNextStatus($action)
     {
         return in_array($action, $this->getActionsList()) ?
-            $this->current_status = [
-                self::ACTION_COMPLETED => self::STATUS_COMPLETED,
-                self::ACTION_DENIAL => self::STATUS_FAILING,
-                self::ACTION_CANCEL => self::STATUS_CANCELED
-            ][$action] : null;
+            self::ACTION_STATUS_MAP[$action] : null;
     }
 
     private function getAvailableActions()
