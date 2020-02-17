@@ -1,7 +1,10 @@
 {
   "name": "test app",
   "type": "project",
-  "require": {},
+  "require": {
+    "ext-curl": "*",
+    "ext-json": "*"
+  },
   "require-dev": {},
   "autoload": {
     "psr-4": {
